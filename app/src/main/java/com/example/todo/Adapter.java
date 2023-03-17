@@ -62,8 +62,9 @@ public class Adapter extends BaseAdapter{
     }
 
     /**
-     * @param i
-     * @return the item
+     * Get the id of the item at the index
+     * @param i the index
+     * @return the id
      */
     @Override
     public long getItemId(int i) {
@@ -71,10 +72,11 @@ public class Adapter extends BaseAdapter{
     }
 
     /**
-     * @param i
-     * @param convertView
-     * @param viewGroup
-     * @return
+     * Get the view of the item at the index
+     * @param i the index
+     * @param convertView the view
+     * @param viewGroup the view group
+     * @return the view
      */
     @Override
     public View getView(int i, View convertView, ViewGroup viewGroup) {
@@ -86,6 +88,8 @@ public class Adapter extends BaseAdapter{
             view = (View) convertView;
         }
 
+        /**      A modifier quand la vue sera prête      **/
+        /** ----------------------------------------- **/
         //initialisation des vues du layout
         /*
         TextView titleMovie = (TextView) view.findViewById(R.id.TitletextView);
@@ -93,7 +97,6 @@ public class Adapter extends BaseAdapter{
         TextView movieDuration = (TextView) view.findViewById(R.id.DureetextView);
         ImageView posterMovie = (ImageView) view.findViewById(R.id.AfficheimageView);
 
-         */
 
         //modification des vues
         titleMovie.setText(cinemaList.get(i).getMovieTitle());
@@ -111,7 +114,8 @@ public class Adapter extends BaseAdapter{
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        */
+        /** ----------------------------------------- **/
         return view;
     }
 }
