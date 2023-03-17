@@ -54,7 +54,7 @@ public class Adapter extends BaseAdapter{
     /**
      * Get the an item at the index
      * @param i the index
-     * @return
+     * @return the item
      */
     @Override
     public Object getItem(int i) {
