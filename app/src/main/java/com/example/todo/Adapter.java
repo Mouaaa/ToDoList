@@ -27,7 +27,7 @@ public class Adapter extends BaseAdapter{
     private Context context;
 
     /**
-     * he inflater
+     * The inflater
      */
     private LayoutInflater inflater;
 

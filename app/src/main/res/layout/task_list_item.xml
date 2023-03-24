@@ -8,13 +8,13 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-
     <FrameLayout
         android:layout_width="302dp"
         android:layout_height="82dp"
         android:background="@color/design_default_color_error"
         tools:layout_editor_absoluteX="78dp"
-        tools:layout_editor_absoluteY="156dp">
+        tools:layout_editor_absoluteY="156dp"
+        tools:ignore="MissingConstraints">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -66,7 +66,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editTextDate"
+                android:id="@+id/editStartDate"
                 android:layout_width="58dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="32dp"
@@ -84,7 +84,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/duree" />
 
             <EditText
-                android:id="@+id/editTextDate"
+                android:id="@+id/editEndDate"
                 android:layout_width="58dp"
                 android:layout_height="20dp"
                 android:layout_marginTop="12dp"
@@ -99,7 +99,7 @@
                 android:textSize="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/editTextDate"
+                app:layout_constraintStart_toEndOf="@+id/editStartDate"
                 app:layout_constraintTop_toBottomOf="@+id/duree" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
