@@ -18,23 +18,101 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:inputType="none"
-            android:id="@+id/editStartDate"
-            android:layout_width="58dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="12dp"
-            android:layout_weight="1"
-            android:autofillHints="@string/hint_pick_up_date"
-            android:background="#FFFFFF"
-            android:ems="1"
-            android:focusable="false"
-            android:hint="@string/hint_pick_up_date"
-            android:textColor="@color/black"
-            android:textSize="10sp"
-            app:layout_constraintStart_toEndOf="@+id/progress"
-            app:layout_constraintTop_toBottomOf="@+id/duree" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".MainActivity">
+
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="16dp"
+                android:text="Ajouter une tâche"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/titre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="52dp"
+                android:hint="Nom de la tâche"
+                android:inputType="text"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <EditText
+                android:id="@+id/priority"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="Priorité"
+                android:inputType="text"
+                app:layout_constraintTop_toBottomOf="@+id/titre"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <EditText
+                android:id="@+id/start"
+                android:layout_width="177dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="52dp"
+                android:hint="Date de début"
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/priority" />
+
+            <EditText
+                android:id="@+id/end"
+                android:layout_width="177dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="52dp"
+                android:hint="Date de fin"
+                android:inputType="text"
+                app:layout_constraintStart_toEndOf="@+id/start"
+                app:layout_constraintTop_toBottomOf="@+id/priority" />
+
+            <EditText
+                android:id="@+id/avancement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:hint="Avancement"
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/start" />
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:hint="Description"
+                android:inputType="textMultiLine"
+                app:layout_constraintTop_toBottomOf="@+id/avancement"
+                tools:layout_editor_absoluteX="-16dp" />
+
+            <EditText
+                android:id="@+id/url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:hint="URL"
+                android:inputType="text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/description"
+                app:layout_constraintVertical_bias="0.0"
+                tools:layout_editor_absoluteX="0dp" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </FrameLayout>
 
