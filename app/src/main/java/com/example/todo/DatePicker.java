@@ -13,6 +13,8 @@ public class DatePicker  extends AppCompatActivity {
     EditText etDate = findViewById(R.id.editTextDate);
 
     final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
+
+
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
             myCalendar.set(Calendar.YEAR, year);
