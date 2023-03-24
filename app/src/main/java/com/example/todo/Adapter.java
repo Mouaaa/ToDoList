@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.io.IOException;
@@ -91,11 +92,11 @@ public class Adapter extends BaseAdapter{
         /**      A modifier quand la vue sera prête      **/
         /** ----------------------------------------- **/
         //initialisation des vues du layout
-        /*
-        TextView titleMovie = (TextView) view.findViewById(R.id.TitletextView);
-        TextView directorMovie = (TextView) view.findViewById(R.id.DirectortextView);
-        TextView movieDuration = (TextView) view.findViewById(R.id.DureetextView);
-        ImageView posterMovie = (ImageView) view.findViewById(R.id.AfficheimageView);
+
+        TextView title = (TextView) view.findViewById(R.id.title);
+        TextView progress = (TextView) view.findViewById(R.id.progress);
+        EditText startDate = (EditText) view.findViewById(R.id.editStartDate);
+        Edit = (ImageView) view.findViewById(R.id.AfficheimageView);
 
 
         //modification des vues
@@ -114,7 +115,7 @@ public class Adapter extends BaseAdapter{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        */
+
         /** ----------------------------------------- **/
         return view;
     }
