@@ -89,34 +89,22 @@ public class Adapter extends BaseAdapter{
             view = (View) convertView;
         }
 
-        /**      A modifier quand la vue sera prête      **/
-        /** ----------------------------------------- **/
-        //initialisation des vues du layout
-
+        //Initialisation of the views of the layout
         TextView title = (TextView) view.findViewById(R.id.title);
         TextView progress = (TextView) view.findViewById(R.id.progress);
         EditText startDate = (EditText) view.findViewById(R.id.editStartDate);
-        Edit = (ImageView) view.findViewById(R.id.AfficheimageView);
+        EditText endDate= (EditText) view.findViewById(R.id.editEndDate);
 
+        //Modification of the views
+        title.setText(tasks.get(i).getTitle());
+        progress.setText(tasks.get(i).getState());
+        startDate.setText(tasks.get(i).getStartDate());
+        endDate.setText(tasks.get(i).getEndDate());
 
-        //modification des vues
-        titleMovie.setText(cinemaList.get(i).getMovieTitle());
-        directorMovie.setText(cinemaList.get(i).getRealisateurName());
-        movieDuration.setText(cinemaList.get(i).getFilmDuration());
-
-        //modification de l'image
+        // Set the policy
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        try {
-            InputStream in = new java.net.URL(cinemaList.get(i).getImagePath()).openStream();
-            Bitmap map = BitmapFactory.decodeStream(in);
-            posterMovie.setImageBitmap(map);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        /** ----------------------------------------- **/
         return view;
     }
 }

@@ -1,7 +1,5 @@
 package com.example.todo;
 
-import java.util.Date;
-
 public class Task {
 
     /**
@@ -15,11 +13,11 @@ public class Task {
     /**
      * The start date of the Task
      */
-    private Date dateStart;
+    private String startDate;
     /**
      * The end date of the Task
      */
-    private Date dateEnd;
+    private String endDate;
     /**
      * The url of the Task
      */
@@ -38,11 +36,11 @@ public class Task {
      * @param url of the Task
      * @param state of the Task
      */
-    Task(String title, String description, Date ds, Date de, String url, int state){
+    Task(String title, String description, String ds, String de, String url, int state){
         this.title = title;
         this.description = description;
-        this.dateStart = ds;
-        this.dateEnd = de;
+        this.startDate = ds;
+        this.endDate = de;
         this.url = url;
         this.state = state;
     }
@@ -99,47 +97,31 @@ public class Task {
      * Get the start date of the Task
      * @return the start date
      */
-    public Date getDateStart() {
-        return dateStart;
+    public String getStartDate() {
+        return startDate;
     }
 
     /**
      * Set the start date of the Task
-     * @param dateStart of the Task
+     * @param startDate of the Task
      */
-    public void setDateStart(Date dateStart) {
-        this.dateStart = dateStart;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
 
     /**
      * Get the end date of the Task
      * @return the end date
      */
-    public Date getDateEnd() {
-        return dateEnd;
+    public String getEndDate() {
+        return endDate;
     }
 
     /**
      * Set the end date of the Task
-     * @param dateEnd of the Task
+     * @param endDate of the Task
      */
-    public void setDateEnd(Date dateEnd) {
-        this.dateEnd = dateEnd;
-    }
-
-    /**
-     * Get the url of the Task
-     * @return the url
-     */
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     * Set the url of the Task
-     * @param url of the Task
-     */
-    public void setUrl(String url) {
-        this.url = url;
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 }
