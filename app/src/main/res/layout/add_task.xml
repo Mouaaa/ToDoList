@@ -50,7 +50,8 @@
                 android:layout_height="48dp"
                 android:layout_marginTop="52dp"
                 android:hint="Start date"
-                android:inputType="text"
+                android:inputType="none"
+                android:focusable="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/addPriority" />
 
@@ -60,7 +61,8 @@
                 android:layout_height="48dp"
                 android:layout_marginTop="52dp"
                 android:hint="End date"
-                android:inputType="text"
+                android:focusable="false"
+                android:inputType="none"
                 app:layout_constraintStart_toEndOf="@+id/addStartDate"
                 app:layout_constraintTop_toBottomOf="@+id/addPriority" />
 

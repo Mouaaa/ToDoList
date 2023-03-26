@@ -47,4 +47,10 @@ public class CustomDatePicker implements View.OnClickListener, DatePickerDialog.
     public Calendar getCalendar() {
         return calendar;
     }
+
+    public String getFormattedDate(){
+        String myFormat = "dd/MM/yyyy";
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat(myFormat);
+        return sdf.format(calendar.getTime());
+    }
 }

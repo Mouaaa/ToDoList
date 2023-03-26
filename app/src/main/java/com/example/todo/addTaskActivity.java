@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,14 +15,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class addTaskActivity extends AppCompatActivity {
-    EditText title;
-    Spinner priority;
-    EditText start;
-    EditText end;
-    Spinner progress;
-    Spinner context;
-    EditText description;
-    EditText url;
+    private EditText title;
+    private Spinner priority;
+    private CustomDatePicker dateStart;
+    private CustomDatePicker dateEnd;
+    private Spinner progress;
+    private Spinner context;
+    private EditText description;
+    private EditText url;
 
 
     @Override
@@ -37,8 +38,11 @@ public class addTaskActivity extends AppCompatActivity {
         priority.setAdapter(adapter);
         priority.setSelection(0);
 
-        start = (EditText) findViewById(R.id.addStartDate);
-        end = (EditText) findViewById(R.id.addEndDate);
+        EditText start = (EditText) findViewById(R.id.addStartDate);
+        dateStart = new CustomDatePicker(this, start);
+        EditText end = (EditText) findViewById(R.id.addEndDate);
+        dateEnd = new CustomDatePicker(this, end);
+
         progress = (Spinner) findViewById(R.id.addProgress);
         List<String> optionsProg = Arrays.asList("ToDo", "In progress", "Closed");
         ArrayAdapter<String> adapterProg = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, optionsProg);
@@ -61,22 +65,31 @@ public class addTaskActivity extends AppCompatActivity {
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                finish();
+                finish(true);
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        finish(false);
+    }
 
-    public void finish(){
-        Intent returnIntent = new Intent();
-        returnIntent.putExtra("title", title.getText().toString());
-        returnIntent.putExtra("priority", priority.getSelectedItem().toString());
-        returnIntent.putExtra("start", start.getText().toString());
-        returnIntent.putExtra("end", end.getText().toString());
-        returnIntent.putExtra("progress", progress.getSelectedItem().toString().toString());
-        returnIntent.putExtra("context", context.getSelectedItem().toString().toString());
-        returnIntent.putExtra("desc", description.getText().toString());
-        returnIntent.putExtra("url", url.getText().toString());
-        setResult(RESULT_OK, returnIntent);
+
+    public void finish(boolean addTask){
+        if(!addTask){
+            setResult(RESULT_CANCELED);
+        } else {
+            Intent returnIntent = new Intent();
+            returnIntent.putExtra("title", title.getText().toString());
+            returnIntent.putExtra("priority", priority.getSelectedItem().toString());
+            returnIntent.putExtra("start", dateStart.getFormattedDate());
+            returnIntent.putExtra("end", dateEnd.getFormattedDate());
+            returnIntent.putExtra("progress", progress.getSelectedItem().toString());
+            returnIntent.putExtra("context", context.getSelectedItem().toString());
+            returnIntent.putExtra("desc", description.getText().toString());
+            returnIntent.putExtra("url", url.getText().toString());
+            setResult(RESULT_OK, returnIntent);
+        }
         super.finish();
     }
 }
