@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -95,7 +97,8 @@ public class Adapter extends BaseAdapter{
         TextView context = (TextView) view.findViewById(R.id.context);
         TextView progress = (TextView) view.findViewById(R.id.progress);
         TextView startDate = (TextView) view.findViewById(R.id.editStartDate);
-        TextView endDate= (TextView) view.findViewById(R.id.editEndDate);
+        TextView endDate = (TextView) view.findViewById(R.id.editEndDate);
+        CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBoxDelete);
 
         //Modification of the views
         System.out.println(tasks.get(i).getTitle());
@@ -105,6 +108,15 @@ public class Adapter extends BaseAdapter{
         context.setText(tasks.get(i).getContext());
         startDate.setText(tasks.get(i).getStartDate());
         endDate.setText(tasks.get(i).getEndDate());
+
+
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                tasks.get(i).setSelected(isChecked);
+            }
+        });
+
 
         // Set the policy
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();

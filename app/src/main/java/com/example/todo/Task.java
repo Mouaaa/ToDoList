@@ -42,6 +42,10 @@ public class Task {
      */
     private String url;
 
+    /**
+     * Refers to the checkbox of the task
+     */
+    private boolean isSelected;
 
     /**
      * The constructor of Task
@@ -63,6 +67,7 @@ public class Task {
         this.context = context;
         this.description = description;
         this.url = url;
+        this.isSelected = false;
     }
 
     /**
@@ -172,5 +177,17 @@ public class Task {
      * @param context of the Task
      */
     public void setContext(String context) {this.context = context;}
+
+    /**
+     * Get isSelected value of the Task
+     * @return if the Task isSelected
+     */
+    public boolean isSelected() {return isSelected;}
+
+    /**
+     * Set if the Task isSelected or not
+     * @param selected
+     */
+    public void setSelected(boolean selected) {isSelected = selected;}
 
 }
