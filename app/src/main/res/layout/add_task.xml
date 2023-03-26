@@ -11,7 +11,7 @@
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="348dp"
-        android:layout_height="505dp"
+        android:layout_height="545dp"
         android:background="@color/cardview_dark_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,6 +33,7 @@
                 android:layout_marginTop="32dp"
                 android:hint="Task name"
                 android:inputType="text"
+                android:maxLines="1"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="0dp" />
 
@@ -89,6 +90,7 @@
                 android:layout_marginTop="10dp"
                 android:hint="Description"
                 android:inputType="textMultiLine"
+                android:maxLines="6"
                 app:layout_constraintTop_toBottomOf="@+id/addContext"
                 tools:layout_editor_absoluteX="-16dp" />
 
@@ -99,6 +101,7 @@
                 android:layout_marginTop="24dp"
                 android:hint="URL"
                 android:inputType="text"
+                android:maxLines="1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/addDescription"
                 app:layout_constraintVertical_bias="0.0"
