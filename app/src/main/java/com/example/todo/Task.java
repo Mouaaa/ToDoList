@@ -6,50 +6,63 @@ public class Task {
      * The title of the Task
      */
     private String title;
+
     /**
-     * The description of the Task
+     * The priority of the Task
      */
-    private String description;
+    private String priority;
+
     /**
      * The start date of the Task
      */
     private String startDate;
+
     /**
      * The end date of the Task
      */
     private String endDate;
+
+    /**
+     * The state of the Task
+     */
+    private String state;
+
+    /**
+     * The description of the Task
+     */
+    private String description;
+
     /**
      * The url of the Task
      */
     private String url;
-    /**
-     * The state of the Task
-     */
-    private int state;
+
 
     /**
      * The constructor of Task
      * @param title of the Task
-     * @param description of the Task
+     * @param priority of the Task
      * @param ds of the Task
      * @param de of the Task
-     * @param url of the Task
      * @param state of the Task
+     * @param description of the Task
+     * @param url of the Task
      */
-    Task(String title, String description, String ds, String de, String url, int state){
+    Task(String title, String priority, String ds, String de, String state, String description, String url){
         this.title = title;
-        this.description = description;
+        this.priority = priority;
         this.startDate = ds;
         this.endDate = de;
-        this.url = url;
         this.state = state;
+        this.description = description;
+        this.url = url;
     }
 
     /**
      * Get the title of the Task
      * @return the title
      */
-    public int getState() {
+    public String getState() {
         return state;
     }
 
@@ -57,7 +70,7 @@ public class Task {
      * Set the state of the Task
      * @param state of the Task
      */
-    public void setState(int state) {
+    public void setState(String state) {
         this.state = state;
     }
 
@@ -124,4 +137,19 @@ public class Task {
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
+
+    /**
+     * Get the priority of the Task
+     * @return the priority
+     */
+    public String getPriority() {
+        return priority;
+    }
+
+    /**
+     * Set the priority of the Task
+     * @param priority of the Task
+     */
+    public void setPriority(String priority) {this.priority = priority;}
+
 }

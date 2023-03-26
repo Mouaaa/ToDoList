@@ -23,7 +23,7 @@ public class Adapter extends BaseAdapter{
     private List<Task> tasks;
 
     /**
-     * The courant context of the application
+     * The current context of the application
      */
     private Context context;
 
@@ -90,13 +90,16 @@ public class Adapter extends BaseAdapter{
         }
 
         //Initialisation of the views of the layout
-        TextView title = (TextView) view.findViewById(R.id.title);
+        TextView title = (TextView) view.findViewById(R.id.titleTask);
+        TextView priority = (TextView) view.findViewById(R.id.priority);
         TextView progress = (TextView) view.findViewById(R.id.progress);
-        EditText startDate = (EditText) view.findViewById(R.id.editStartDate);
-        EditText endDate= (EditText) view.findViewById(R.id.editEndDate);
+        TextView startDate = (TextView) view.findViewById(R.id.editStartDate);
+        TextView endDate= (TextView) view.findViewById(R.id.editEndDate);
 
         //Modification of the views
+        System.out.println(tasks.get(i).getTitle());
         title.setText(tasks.get(i).getTitle());
+        priority.setText(tasks.get(i).getPriority());
         progress.setText(tasks.get(i).getState());
         startDate.setText(tasks.get(i).getStartDate());
         endDate.setText(tasks.get(i).getEndDate());
