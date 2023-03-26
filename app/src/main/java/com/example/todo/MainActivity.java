@@ -38,15 +38,16 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(resultCode == RESULT_OK){
-            String title = data.getStringExtra("titre");
+            String title = data.getStringExtra("title");
             String priority = data.getStringExtra("priority");
             String start = data.getStringExtra("start");
             String end = data.getStringExtra("end");
-            String avancement = data.getStringExtra("avancement");
+            String progress = data.getStringExtra("progress");
+            String context = data.getStringExtra("context");
             String desc = data.getStringExtra("desc");
             String url = data.getStringExtra("url");
 
-            Task task = new Task(title,priority,start,end,avancement,desc,url);
+            Task task = new Task(title,priority,start,end,progress,context,desc,url);
             listTask.add(task);
             updateAdapter();
         } else {

@@ -92,6 +92,7 @@ public class Adapter extends BaseAdapter{
         //Initialisation of the views of the layout
         TextView title = (TextView) view.findViewById(R.id.titleTask);
         TextView priority = (TextView) view.findViewById(R.id.priority);
+        TextView context = (TextView) view.findViewById(R.id.context);
         TextView progress = (TextView) view.findViewById(R.id.progress);
         TextView startDate = (TextView) view.findViewById(R.id.editStartDate);
         TextView endDate= (TextView) view.findViewById(R.id.editEndDate);
@@ -100,7 +101,8 @@ public class Adapter extends BaseAdapter{
         System.out.println(tasks.get(i).getTitle());
         title.setText(tasks.get(i).getTitle());
         priority.setText(tasks.get(i).getPriority());
-        progress.setText(tasks.get(i).getState());
+        progress.setText(tasks.get(i).getProgress());
+        context.setText(tasks.get(i).getContext());
         startDate.setText(tasks.get(i).getStartDate());
         endDate.setText(tasks.get(i).getEndDate());
 

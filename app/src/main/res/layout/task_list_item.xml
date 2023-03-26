@@ -38,10 +38,10 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/progress"
+                android:id="@+id/context"
                 android:layout_width="118dp"
                 android:layout_height="18dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="2dp"
                 android:layout_weight="1"
                 android:text="Progress"
                 android:textStyle="italic"
@@ -49,6 +49,19 @@
                 app:layout_constraintHorizontal_bias="0.552"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/titleTask" />
+
+            <TextView
+                android:id="@+id/progress"
+                android:layout_width="118dp"
+                android:layout_height="18dp"
+                android:layout_marginTop="2dp"
+                android:layout_weight="1"
+                android:text="Progress"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toStartOf="@+id/priority"
+                app:layout_constraintHorizontal_bias="0.552"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/context" />
 
             <TextView
                 android:id="@+id/priority"

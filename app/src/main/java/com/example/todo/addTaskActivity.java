@@ -14,11 +14,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class addTaskActivity extends AppCompatActivity {
-    EditText titre;
+    EditText title;
     Spinner priority;
     EditText start;
     EditText end;
-    Spinner avancement;
+    Spinner progress;
+    Spinner context;
     EditText description;
     EditText url;
 
@@ -28,25 +29,32 @@ public class addTaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_task);
 
-        titre = (EditText) findViewById(R.id.titre);
-        priority = (Spinner) findViewById(R.id.priority);
+        title = (EditText) findViewById(R.id.addTitle);
+        priority = (Spinner) findViewById(R.id.addPriority);
         List<String> optionsPrior = Arrays.asList("Low priority", "Medium priority", "High priority");
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, optionsPrior);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         priority.setAdapter(adapter);
         priority.setSelection(0);
 
-        start = (EditText) findViewById(R.id.start);
-        end = (EditText) findViewById(R.id.end);
-        avancement = (Spinner) findViewById(R.id.avancement);
+        start = (EditText) findViewById(R.id.addStartDate);
+        end = (EditText) findViewById(R.id.addEndDate);
+        progress = (Spinner) findViewById(R.id.addProgress);
         List<String> optionsProg = Arrays.asList("ToDo", "In progress", "Closed");
         ArrayAdapter<String> adapterProg = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, optionsProg);
         adapterProg.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        avancement.setAdapter(adapterProg);
-        avancement.setSelection(0);
+        progress.setAdapter(adapterProg);
+        progress.setSelection(0);
 
-        description = (EditText) findViewById(R.id.description);
-        url = (EditText) findViewById(R.id.url);
+        context = (Spinner) findViewById(R.id.addContext);
+        List<String> optionsCont = Arrays.asList("HomeWork", "Job", "Hobby", "Secondary", "Other");
+        ArrayAdapter<String> adapterCont = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, optionsCont);
+        adapterCont.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        context.setAdapter(adapterCont);
+        context.setSelection(0);
+
+        description = (EditText) findViewById(R.id.addDescription);
+        url = (EditText) findViewById(R.id.addUrl);
 
         Button addTask = (Button) findViewById(R.id.buttonAdd);
 
@@ -60,11 +68,12 @@ public class addTaskActivity extends AppCompatActivity {
 
     public void finish(){
         Intent returnIntent = new Intent();
-        returnIntent.putExtra("titre", titre.getText().toString());
+        returnIntent.putExtra("title", title.getText().toString());
         returnIntent.putExtra("priority", priority.getSelectedItem().toString());
         returnIntent.putExtra("start", start.getText().toString());
         returnIntent.putExtra("end", end.getText().toString());
-        returnIntent.putExtra("avancement", avancement.getSelectedItem().toString().toString());
+        returnIntent.putExtra("progress", progress.getSelectedItem().toString().toString());
+        returnIntent.putExtra("context", context.getSelectedItem().toString().toString());
         returnIntent.putExtra("desc", description.getText().toString());
         returnIntent.putExtra("url", url.getText().toString());
         setResult(RESULT_OK, returnIntent);

@@ -23,9 +23,14 @@ public class Task {
     private String endDate;
 
     /**
-     * The state of the Task
+     * The progress of the Task
      */
-    private String state;
+    private String progress;
+
+    /**
+     * The context of the Task
+     */
+    private String context;
 
     /**
      * The description of the Task
@@ -44,16 +49,18 @@ public class Task {
      * @param priority of the Task
      * @param ds of the Task
      * @param de of the Task
-     * @param state of the Task
+     * @param progress of the Task
+     * @param context of the Task
      * @param description of the Task
      * @param url of the Task
      */
-    Task(String title, String priority, String ds, String de, String state, String description, String url){
+    Task(String title, String priority, String ds, String de, String progress, String context, String description, String url){
         this.title = title;
         this.priority = priority;
         this.startDate = ds;
         this.endDate = de;
-        this.state = state;
+        this.progress = progress;
+        this.context = context;
         this.description = description;
         this.url = url;
     }
@@ -62,16 +69,16 @@ public class Task {
      * Get the title of the Task
      * @return the title
      */
-    public String getState() {
-        return state;
+    public String getProgress() {
+        return progress;
     }
 
     /**
      * Set the state of the Task
-     * @param state of the Task
+     * @param progress of the Task
      */
-    public void setState(String state) {
-        this.state = state;
+    public void setProgress(String progress) {
+        this.progress = progress;
     }
 
     /**
@@ -151,5 +158,19 @@ public class Task {
      * @param priority of the Task
      */
     public void setPriority(String priority) {this.priority = priority;}
+
+    /**
+     * Get the context of the Task
+     * @return the context
+     */
+    public String getContext() {
+        return context;
+    }
+
+    /**
+     * Set the context of the Task
+     * @param context of the Task
+     */
+    public void setContext(String context) {this.context = context;}
 
 }
