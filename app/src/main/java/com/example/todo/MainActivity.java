@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import com.google.gson.Gson;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     final int REQUEST_CODE = 1;
     ArrayList<Task> listTask;
     Adapter adapter;
+    ListView list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,10 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Get the shared preference
         SharedPreferences preferences = getSharedPreferences("AgileZen", MODE_PRIVATE);
-
         // Get the json for the taskList
         String json = preferences.getString("taskList", null);
-
         // if the key hadn't been initialized
         if (json == null) {
             listTask = new ArrayList<Task>();
@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
             }.getType();
             listTask = gson.fromJson(json, type);
         }
-
         // Update the display list
         updateAdapter();
 
@@ -68,6 +67,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        list = (ListView) findViewById(R.id.taskList);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Task task = (Task) parent.getItemAtPosition(position);
+                Intent intent = new Intent(getApplicationContext(), TaskDetailsActivity.class);
+                intent.putExtra("title", task.getTitle());
+                intent.putExtra("priority", task.getPriority());
+                intent.putExtra("start", task.getStartDate());
+                intent.putExtra("end", task.getEndDate());
+                intent.putExtra("progress", task.getProgress());
+                intent.putExtra("context", task.getContext());
+                intent.putExtra("desc", task.getDescription());
+                intent.putExtra("url", task.getUrl());
+                startActivityForResult(intent, REQUEST_CODE);
+            }
+        });
     }
 
     // Dans la méthode onActivityResult() que vous avez déjà, ajoutez le code suivant pour stocker l'ArrayList dans les SharedPreferences:

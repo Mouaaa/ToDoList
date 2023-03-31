@@ -190,4 +190,16 @@ public class Task {
      */
     public void setSelected(boolean selected) {isSelected = selected;}
 
+    /**
+     * Get url value of the Task
+     * @return the url of the Task
+     */
+    public String getUrl() {return url;}
+
+    /**
+     * Set url of the Task
+     * @param url
+     */
+    public void setUrl(String url) {this.url = url;}
+
 }

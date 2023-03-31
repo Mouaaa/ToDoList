@@ -117,7 +117,6 @@ public class Adapter extends BaseAdapter{
             }
         });
 
-
         // Set the policy
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
