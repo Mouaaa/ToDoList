@@ -33,6 +33,10 @@
             android:name=".TaskDetailsActivity"
             android:label="Add Task">
         </activity>
+        <activity
+            android:name=".WebActivity"
+            android:label="Add Task">
+        </activity>
     </application>
 
 </manifest>
