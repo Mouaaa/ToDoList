@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Spinner;
 
 import com.google.gson.Gson;
@@ -116,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+        initSearch();
     }
 
     // Dans la méthode onActivityResult() que vous avez déjà, ajoutez le code suivant pour stocker l'ArrayList dans les SharedPreferences:
@@ -162,6 +164,32 @@ public class MainActivity extends AppCompatActivity {
         } else {
 
         }
+    }
+
+    private void initSearch(){
+        SearchView searchView = (SearchView) findViewById(R.id.searchView);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                    ArrayList<Task> listFound = new ArrayList<Task>();
+                    for (Task task : listTask) {
+                        System.out.println("task: " + task.getDescription().toString());
+                        System.out.println("filter: " + s.toLowerCase());
+                        if (task.getTitle().toLowerCase().contains(s.toLowerCase())) {
+                            listFound.add(task);
+                        }
+                    }
+                    Adapter adapter = new Adapter(getApplicationContext(), listFound);
+                    list.setAdapter(adapter);
+                    return true;
+            }
+        });
     }
 
     private void updateAdapter() {
