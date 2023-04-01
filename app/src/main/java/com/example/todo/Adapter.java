@@ -103,9 +103,15 @@ public class Adapter extends BaseAdapter{
         CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBoxDelete);
         Spinner filterPriority = (Spinner) view.findViewById(R.id.filterPriority);
 
-        // Set the policy
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+        //set the values of the views
+        System.out.println(tasks.get(i).getTitle());
+        title.setText(tasks.get(i).getTitle());
+        priority.setText(tasks.get(i).getPriority());
+        progress.setText(tasks.get(i).getProgress());
+        context.setText(tasks.get(i).getContext());
+        startDate.setText(tasks.get(i).getStartDate());
+        endDate.setText(tasks.get(i).getEndDate());
+
 
         // Get the priorities list and create the ArrayAdapter
         List<String> priorities = new ArrayList<String>();
@@ -120,6 +126,10 @@ public class Adapter extends BaseAdapter{
                 tasks.get(i).setSelected(isChecked);
             }
         });
+
+        // Set the policy
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
         return view;
     }
 }
