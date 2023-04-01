@@ -7,18 +7,20 @@ import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Adapter extends BaseAdapter{
-
     /**
      * The Tasks list
      */
@@ -99,16 +101,18 @@ public class Adapter extends BaseAdapter{
         TextView startDate = (TextView) view.findViewById(R.id.editStartDate);
         TextView endDate = (TextView) view.findViewById(R.id.editEndDate);
         CheckBox checkBox = (CheckBox) view.findViewById(R.id.checkBoxDelete);
+        Spinner filterPriority = (Spinner) view.findViewById(R.id.filterPriority);
 
-        //Modification of the views
-        System.out.println(tasks.get(i).getTitle());
-        title.setText(tasks.get(i).getTitle());
-        priority.setText(tasks.get(i).getPriority());
-        progress.setText(tasks.get(i).getProgress());
-        context.setText(tasks.get(i).getContext());
-        startDate.setText(tasks.get(i).getStartDate());
-        endDate.setText(tasks.get(i).getEndDate());
+        // Set the policy
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
+        // Get the priorities list and create the ArrayAdapter
+        List<String> priorities = new ArrayList<String>();
+        priorities.add("All");
+        priorities.add("High");
+        priorities.add("Medium");
+        priorities.add("Low");
 
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -116,11 +120,6 @@ public class Adapter extends BaseAdapter{
                 tasks.get(i).setSelected(isChecked);
             }
         });
-
-        // Set the policy
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
         return view;
     }
 }
