@@ -7,12 +7,17 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     final int REQUEST_CODE = 1;
@@ -66,6 +71,14 @@ public class MainActivity extends AppCompatActivity {
                 saveArrayList(listTask);
             }
         });
+
+        Spinner filterPriority = (Spinner) findViewById(R.id.filterPriority);
+        List<String> optionsFiltPrior = Arrays.asList( "", "ToDo", "In progress", "Closed");
+        ArrayAdapter<String> adapterFiltPrior = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, optionsFiltPrior);
+        adapterFiltPrior.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        filterPriority.setAdapter(adapterFiltPrior);
+        filterPriority.setSelection(0);
+
 
         list = (ListView) findViewById(R.id.taskList);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
