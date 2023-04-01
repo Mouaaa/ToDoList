@@ -84,6 +84,25 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
+
+        list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Task task = (Task) parent.getItemAtPosition(position);
+                Intent intent = new Intent(getApplicationContext(), ModifyTaskActivity.class);
+                intent.putExtra("id", String.valueOf(position));
+                intent.putExtra("title", task.getTitle());
+                intent.putExtra("priority", task.getPriority());
+                intent.putExtra("start", task.getStartDate());
+                intent.putExtra("end", task.getEndDate());
+                intent.putExtra("progress", task.getProgress());
+                intent.putExtra("context", task.getContext());
+                intent.putExtra("desc", task.getDescription());
+                intent.putExtra("url", task.getUrl());
+                startActivityForResult(intent, REQUEST_CODE);
+                return false;
+            }
+        });
     }
 
     // Dans la méthode onActivityResult() que vous avez déjà, ajoutez le code suivant pour stocker l'ArrayList dans les SharedPreferences:
@@ -109,8 +128,22 @@ public class MainActivity extends AppCompatActivity {
             String desc = data.getStringExtra("desc");
             String url = data.getStringExtra("url");
 
-            Task task = new Task(title, priority, start, end, progress, context, desc, url);
-            listTask.add(task);
+            if(data.getStringExtra("id") != null) {
+                int idTask = Integer.parseInt(data.getStringExtra("id"));
+                Task task = listTask.get(idTask);
+                task.setTitle(title);
+                task.setPriority(priority);
+                task.setStartDate(start);
+                task.setEndDate(end);
+                task.setProgress(progress);
+                task.setContext(context);
+                task.setDescription(desc);
+                task.setUrl(url);
+                updateAdapter();
+            } else {
+                Task task = new Task(title, priority, start, end, progress, context, desc, url);
+                listTask.add(task);
+            }
             updateAdapter();
             saveArrayList(listTask);
         } else {

@@ -25,7 +25,9 @@ public class WebActivity extends AppCompatActivity {
         params.setJavaScriptEnabled(true);
         params.setBuiltInZoomControls(true);
         webView.addJavascriptInterface(new WebAppInterface(this), "Android");
+        webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         webView.setWebViewClient(new MyWebViewClient());
+        webView.loadUrl(url);
     }
 
 
@@ -37,16 +39,6 @@ public class WebActivity extends AppCompatActivity {
             return true;
         }
     }
-
-    @Override
-    public boolean onKeyDown(int keycode, KeyEvent event){
-        if((keycode == KeyEvent.KEYCODE_BACK) && webView.canGoBack()){
-            webView.goBack();
-            return true;
-        }
-        return super.onKeyDown(keycode,event);
-    }
-
 }
 
 

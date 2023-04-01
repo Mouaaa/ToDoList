@@ -55,7 +55,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 Intent myIntent = new Intent(getApplicationContext(), WebActivity.class);
-                myIntent.putExtra("url", url.toString());
+                myIntent.putExtra("url", url.getText().toString());
                 startActivityForResult(myIntent, REQUEST_CODE);            }
         });
     }
@@ -66,7 +66,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
 
     public void finish(){
-        setResult(RESULT_OK);
+        setResult(RESULT_CANCELED);
         super.finish();
     }
 }
