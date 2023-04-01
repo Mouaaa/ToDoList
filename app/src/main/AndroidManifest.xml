@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -30,8 +32,15 @@
             android:label="Add Task">
         </activity>
         <activity
-            android:name=".TaskDetailsActivity"
-            android:label="Add Task">
+            android:name=".TaskDetailsActivity">
+        </activity>
+        <activity
+            android:name=".WebActivity"
+            android:label="WebAccess">
+        </activity>
+        <activity
+            android:name=".ModifyTaskActivity"
+            android:label="Modify Task">
         </activity>
     </application>
 

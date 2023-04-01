@@ -7,12 +7,17 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     final int REQUEST_CODE = 1;
@@ -67,6 +72,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Spinner filterPriority = (Spinner) findViewById(R.id.filterPriority);
+        List<String> optionsFiltPrior = Arrays.asList( "", "ToDo", "In progress", "Closed");
+        ArrayAdapter<String> adapterFiltPrior = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, optionsFiltPrior);
+        adapterFiltPrior.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        filterPriority.setAdapter(adapterFiltPrior);
+        filterPriority.setSelection(0);
+
+
         list = (ListView) findViewById(R.id.taskList);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -82,6 +95,25 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("desc", task.getDescription());
                 intent.putExtra("url", task.getUrl());
                 startActivityForResult(intent, REQUEST_CODE);
+            }
+        });
+
+        list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Task task = (Task) parent.getItemAtPosition(position);
+                Intent intent = new Intent(getApplicationContext(), ModifyTaskActivity.class);
+                intent.putExtra("id", String.valueOf(position));
+                intent.putExtra("title", task.getTitle());
+                intent.putExtra("priority", task.getPriority());
+                intent.putExtra("start", task.getStartDate());
+                intent.putExtra("end", task.getEndDate());
+                intent.putExtra("progress", task.getProgress());
+                intent.putExtra("context", task.getContext());
+                intent.putExtra("desc", task.getDescription());
+                intent.putExtra("url", task.getUrl());
+                startActivityForResult(intent, REQUEST_CODE);
+                return false;
             }
         });
     }
@@ -109,8 +141,22 @@ public class MainActivity extends AppCompatActivity {
             String desc = data.getStringExtra("desc");
             String url = data.getStringExtra("url");
 
-            Task task = new Task(title, priority, start, end, progress, context, desc, url);
-            listTask.add(task);
+            if(data.getStringExtra("id") != null) {
+                int idTask = Integer.parseInt(data.getStringExtra("id"));
+                Task task = listTask.get(idTask);
+                task.setTitle(title);
+                task.setPriority(priority);
+                task.setStartDate(start);
+                task.setEndDate(end);
+                task.setProgress(progress);
+                task.setContext(context);
+                task.setDescription(desc);
+                task.setUrl(url);
+                updateAdapter();
+            } else {
+                Task task = new Task(title, priority, start, end, progress, context, desc, url);
+                listTask.add(task);
+            }
             updateAdapter();
             saveArrayList(listTask);
         } else {

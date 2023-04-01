@@ -99,7 +99,7 @@ public class Task {
      * @param title of the Task
      */
     public void setTitle(String title) {
-        title = title;
+        this.title = title;
     }
 
     /**
