@@ -10,9 +10,8 @@
 
     <FrameLayout
         android:id="@+id/frameLayout"
-        android:layout_width="348dp"
-        android:layout_height="545dp"
-        android:background="@color/cardview_dark_background"
+        android:layout_width="352dp"
+        android:layout_height="524dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,9 +49,9 @@
                 android:layout_width="177dp"
                 android:layout_height="48dp"
                 android:layout_marginTop="52dp"
+                android:focusable="false"
                 android:hint="Start date"
                 android:inputType="none"
-                android:focusable="false"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/addPriority" />
 
@@ -61,8 +60,8 @@
                 android:layout_width="177dp"
                 android:layout_height="48dp"
                 android:layout_marginTop="52dp"
-                android:hint="End date"
                 android:focusable="false"
+                android:hint="End date"
                 android:inputType="none"
                 app:layout_constraintStart_toEndOf="@+id/addStartDate"
                 app:layout_constraintTop_toBottomOf="@+id/addPriority" />
@@ -115,8 +114,8 @@
 
     <Button
         android:id="@+id/buttonAdd"
-        android:layout_width="139dp"
-        android:layout_height="37dp"
+        android:layout_width="155dp"
+        android:layout_height="45dp"
         android:layout_marginTop="16dp"
         android:text="Add Task"
         app:layout_constraintBottom_toBottomOf="parent"
