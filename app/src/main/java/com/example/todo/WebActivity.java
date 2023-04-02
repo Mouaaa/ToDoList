@@ -11,8 +11,15 @@ import android.webkit.WebViewClient;
 
 public class WebActivity extends AppCompatActivity {
 
+    /**
+     * web view
+     */
     WebView webView;
 
+    /**
+     * Create a web view
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +37,9 @@ public class WebActivity extends AppCompatActivity {
         webView.loadUrl(url);
     }
 
-
-
+    /**
+     * web view client
+     */
     private class MyWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url){

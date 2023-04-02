@@ -15,17 +15,56 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TaskDetailsActivity extends AppCompatActivity {
+
+    /**
+     * title of the task
+     */
     private EditText title;
+
+    /**
+     * priority of the task
+     */
     private EditText priority;
+
+    /**
+     * start date of the task
+     */
     private EditText dateStart;
+
+    /**
+     * end date of the task
+     */
     private EditText dateEnd;
+
+    /**
+     * progress of the task
+     */
     private EditText progress;
+
+    /**
+     * context of the task
+     */
     private EditText context;
+
+    /**
+     * description of the task
+     */
     private EditText description;
+
+    /**
+     * url of the task
+     */
     private EditText url;
+
+    /**
+     * request code
+     */
     final int REQUEST_CODE = 1;
 
 
+    /**
+     * Called when the activity is first created.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +91,11 @@ public class TaskDetailsActivity extends AppCompatActivity {
         Button accessLink = (Button) findViewById(R.id.detailGoToLink);
 
         accessLink.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * Called when the user clicks the button
+             * @param v
+             */
             @Override
             public void onClick(View v){
                 Intent myIntent = new Intent(getApplicationContext(), WebActivity.class);
@@ -59,12 +103,18 @@ public class TaskDetailsActivity extends AppCompatActivity {
                 startActivityForResult(myIntent, REQUEST_CODE);            }
         });
     }
+
+    /**
+     * Called when the activity is about to be destroyed.
+     */
     @Override
     public void onBackPressed() {
         finish();
     }
 
-
+    /**
+     * Called when the activity is about to be destroyed.
+     */
     public void finish(){
         setResult(RESULT_CANCELED);
         super.finish();

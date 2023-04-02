@@ -120,7 +120,14 @@ public class Adapter extends BaseAdapter{
         priorities.add("Medium");
         priorities.add("Low");
 
+        // Create the ArrayAdapter
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            /**
+             * On checked changed
+             * @param buttonView the button view
+             * @param isChecked the boolean
+             */
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 tasks.get(i).setSelected(isChecked);

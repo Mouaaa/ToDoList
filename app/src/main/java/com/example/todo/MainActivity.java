@@ -21,11 +21,30 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    /**
+     * The request code for the addTaskActivity
+     */
     final int REQUEST_CODE = 1;
+
+    /**
+     * The list of tasks
+     */
     ArrayList<Task> listTask;
+
+    /**
+     * The adapter for the list
+     */
     Adapter adapter;
+
+    /**
+     * The list view
+     */
     ListView list;
 
+    /**
+     * Create the main activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +68,14 @@ public class MainActivity extends AppCompatActivity {
         updateAdapter();
 
         Button addTask = (Button) findViewById(R.id.addButton);
+
+        // When the add button is clicked, go to the addTaskActivity
         addTask.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * When the add button is clicked, go to the addTaskActivity
+             * @param v the view
+             */
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(getApplicationContext(), addTaskActivity.class);
@@ -59,6 +85,11 @@ public class MainActivity extends AppCompatActivity {
 
         Button deleteButton = (Button) findViewById(R.id.deleteButton);
         deleteButton.setOnClickListener(new View.OnClickListener() {
+
+            /**
+             * When the delete button is clicked, delete the selected tasks
+             * @param v the view
+             */
             @Override
             public void onClick(View v) {
                 ArrayList<Task> selectedTasks = new ArrayList<Task>();
@@ -92,6 +123,14 @@ public class MainActivity extends AppCompatActivity {
 
         list = (ListView) findViewById(R.id.taskList);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            /**
+             * When a task is clicked, go to the taskDetailsActivity
+             * @param parent the parent
+             * @param view the view
+             * @param position the position
+             * @param id the id
+             */
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Task task = (Task) parent.getItemAtPosition(position);
@@ -109,6 +148,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
         list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            /**
+             * When a task is long clicked, go to the modifyTaskActivity
+             * @param parent the parent
+             * @param view the view
+             * @param position the position
+             * @param id the id
+             * @return true
+             */
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Task task = (Task) parent.getItemAtPosition(position);
@@ -131,7 +179,9 @@ public class MainActivity extends AppCompatActivity {
         initProgressFilter();
     }
 
-    // Dans la méthode onActivityResult() que vous avez déjà, ajoutez le code suivant pour stocker l'ArrayList dans les SharedPreferences:
+    /**
+     * Update the tasks
+     */
     private void saveArrayList(ArrayList<Task> listTask) {
         SharedPreferences preferences = getSharedPreferences("AgileZen", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
@@ -141,6 +191,9 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    /**
+     * Update the display list
+     */
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -177,15 +230,28 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Initiate the search
+     */
     private void initSearch(){
         SearchView searchView = (SearchView) findViewById(R.id.searchView);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            /**
+             * When the search is submitted
+             * @param query the query
+             * @return false
+             */
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
             }
 
+            /**
+             * When the text is changed
+             * @param s the text
+             * @return true
+             */
             @Override
             public boolean onQueryTextChange(String s) {
                     ArrayList<Task> listFound = new ArrayList<Task>();
@@ -201,9 +267,20 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Initiate the priority filter
+     */
     private void initPriorityFilter(){
         Spinner filterPriority = (Spinner) findViewById(R.id.filterPriority);
         filterPriority.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            /**
+             * When an item is selected
+             * @param parent the parent
+             * @param view the view
+             * @param position the position
+             * @param id the id
+             */
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String priority = parent.getItemAtPosition(position).toString();
@@ -218,6 +295,10 @@ public class MainActivity extends AppCompatActivity {
                 list.setAdapter(adapter);
             }
 
+            /**
+             * When nothing is selected
+             * @param parent the parent
+             */
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -225,9 +306,20 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Initiate the progress filter
+     */
     private void initProgressFilter(){
         Spinner filterProgress = (Spinner) findViewById(R.id.filterProgress);
         filterProgress.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            /**
+             * When an item is selected
+             * @param parent the parent
+             * @param view the view
+             * @param position the position
+             * @param id the id
+             */
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String progress = parent.getItemAtPosition(position).toString();
@@ -243,12 +335,19 @@ public class MainActivity extends AppCompatActivity {
                 list.setAdapter(adapter);
             }
 
+            /**
+             * When nothing is selected
+             * @param parent the parent
+             */
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
     }
 
+    /**
+     * Update the adapter
+     */
     private void updateAdapter() {
         Adapter adapter = new Adapter(this, listTask);
         ListView list = (ListView) findViewById(R.id.taskList);
