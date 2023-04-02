@@ -53,22 +53,32 @@
 
     <Spinner
         android:id="@+id/filterPriority"
-        android:layout_width="113dp"
+        android:layout_width="95dp"
         android:layout_height="24dp"
-        android:layout_marginTop="27dp"
-        app:layout_constraintEnd_toStartOf="@+id/deleteButton"
-        app:layout_constraintHorizontal_bias="0.091"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Spinner
+        android:id="@+id/filterProgress"
+        android:layout_width="103dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toStartOf="@+id/filterPriority"
+        app:layout_constraintHorizontal_bias="0.227"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
     <SearchView
         android:id="@+id/searchView"
-        android:layout_width="159dp"
-        android:layout_height="37dp"
+        android:layout_width="129dp"
+        android:layout_height="36dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.549"
+        app:layout_constraintHorizontal_bias="0.573"
         app:layout_constraintStart_toEndOf="@+id/filterPriority"
         app:layout_constraintTop_toTopOf="parent" />
 

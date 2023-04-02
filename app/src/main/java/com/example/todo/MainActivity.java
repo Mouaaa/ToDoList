@@ -73,12 +73,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //initiate the spinner for the priority filter
         Spinner filterPriority = (Spinner) findViewById(R.id.filterPriority);
-        List<String> optionsFiltPrior = Arrays.asList( "", "ToDo", "In progress", "Closed");
+        List<String> optionsFiltPrior = Arrays.asList( "", "Low priority", "Medium priority", "High priority");
         ArrayAdapter<String> adapterFiltPrior = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, optionsFiltPrior);
         adapterFiltPrior.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         filterPriority.setAdapter(adapterFiltPrior);
         filterPriority.setSelection(0);
+
+        //initiate the spinner for the progress filter
+        Spinner filterProgress = (Spinner) findViewById(R.id.filterProgress);
+        List<String> optionsFiltPro = Arrays.asList( "", "ToDo", "In progress", "Closed");
+        ArrayAdapter<String> adapterFiltPro = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, optionsFiltPro);
+        adapterFiltPro.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        filterProgress.setAdapter(adapterFiltPro);
+        filterProgress.setSelection(0);
 
 
         list = (ListView) findViewById(R.id.taskList);
@@ -118,6 +127,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         initSearch();
+        initPriorityFilter();
+        initProgressFilter();
     }
 
     // Dans la méthode onActivityResult() que vous avez déjà, ajoutez le code suivant pour stocker l'ArrayList dans les SharedPreferences:
@@ -179,8 +190,6 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String s) {
                     ArrayList<Task> listFound = new ArrayList<Task>();
                     for (Task task : listTask) {
-                        System.out.println("task: " + task.getDescription().toString());
-                        System.out.println("filter: " + s.toLowerCase());
                         if (task.getTitle().toLowerCase().contains(s.toLowerCase())) {
                             listFound.add(task);
                         }
@@ -188,6 +197,54 @@ public class MainActivity extends AppCompatActivity {
                     Adapter adapter = new Adapter(getApplicationContext(), listFound);
                     list.setAdapter(adapter);
                     return true;
+            }
+        });
+    }
+
+    private void initPriorityFilter(){
+        Spinner filterPriority = (Spinner) findViewById(R.id.filterPriority);
+        filterPriority.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String priority = parent.getItemAtPosition(position).toString();
+                System.out.println("priority: " + priority);
+                ArrayList<Task> listFound = new ArrayList<Task>();
+                for (Task task : listTask) {
+                    if (task.getPriority().toLowerCase().contains(priority.toLowerCase() ) || priority.toLowerCase() == "") {
+                        listFound.add(task);
+                    }
+                }
+                Adapter adapter = new Adapter(getApplicationContext(), listFound);
+                list.setAdapter(adapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void initProgressFilter(){
+        Spinner filterProgress = (Spinner) findViewById(R.id.filterProgress);
+        filterProgress.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String progress = parent.getItemAtPosition(position).toString();
+                ArrayList<Task> listFound = new ArrayList<Task>();
+                for (Task task : listTask) {
+                    if (task.getProgress().toLowerCase().contains(progress.toLowerCase()) ||  progress.toLowerCase()== "") {
+                        System.out.println("progress: " + progress);
+                        System.out.println("task progress: " + task.getProgress());
+                        listFound.add(task);
+                    }
+                }
+                Adapter adapter = new Adapter(getApplicationContext(), listFound);
+                list.setAdapter(adapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
             }
         });
     }
