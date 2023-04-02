@@ -284,7 +284,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String priority = parent.getItemAtPosition(position).toString();
-                System.out.println("priority: " + priority);
                 ArrayList<Task> listFound = new ArrayList<Task>();
                 for (Task task : listTask) {
                     if (task.getPriority().toLowerCase().contains(priority.toLowerCase() ) || priority.toLowerCase() == "") {
@@ -326,8 +325,6 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<Task> listFound = new ArrayList<Task>();
                 for (Task task : listTask) {
                     if (task.getProgress().toLowerCase().contains(progress.toLowerCase()) ||  progress.toLowerCase()== "") {
-                        System.out.println("progress: " + progress);
-                        System.out.println("task progress: " + task.getProgress());
                         listFound.add(task);
                     }
                 }
